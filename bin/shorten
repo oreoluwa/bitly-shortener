@@ -1,0 +1,8 @@
+#! /usr/bin/env ruby
+
+require 'bundler/setup'
+require 'bitly_shortener'
+
+args = ARGV.empty? ? %w[--help] : ARGV
+request = Bitly::Shortener::CLI.parse args
+STDOUT.write Bitly::Shortener::Shorten.new(request).shortened_url unless request.url.nil?
